@@ -1,5 +1,5 @@
 class AthorityServicesSelectors{
-    static scheduleAppointment  = 'button[class*="btn-secondary-"]'
+    static service  = 'div.service'
 }
 
 export default AthorityServicesSelectors

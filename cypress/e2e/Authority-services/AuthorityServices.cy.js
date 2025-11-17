@@ -2,16 +2,17 @@ import AthorityServicesSelectors from "./AthorityServicesSelectors";
 
 describe("Authority 262 - appointment buttons", () => {
   beforeEach(() => {
-    // Open the authority page before each test
     cy.visit("https://govisit.gov.il/he/authorities/authority/262");
   });
 
-  it("should click all 'לזימון תור' buttons and verify URLs", () => {
+  it( "Should appointment buttons include 'appointment'", () => {
     cy.wait(10000); // Wait for all services to load
 
     // Iterate through all appointment buttons
-    cy.get(AthorityServicesSelectors.scheduleAppointment).each(($btn) => {
-      cy.wrap($btn).click({force: true});
+    cy.get(AthorityServicesSelectors.service).each(($service) => {
+      cy.wrap($service).within(() => {
+        cy.get("button").contains("לזימון תור").click();
+      });
 
       // Check that the navigation URL is correct
       cy.url().then((url) => {
